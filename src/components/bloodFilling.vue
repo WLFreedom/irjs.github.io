@@ -1,6 +1,6 @@
 <template>
 	<div class="blood-map">
-		<IranMap class="map" />
+		<IranMap />
 		<div class="wave-wrapper">
 			<ul class="waves" aria-hidden="true">
 				<li>wave 1</li>

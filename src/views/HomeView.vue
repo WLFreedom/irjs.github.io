@@ -6,7 +6,7 @@
 					<BloodFilling/>
 				</v-col>
 				<v-col lg="6" md="12" cols="12">
-					List
+					<TimeLine />
 				</v-col>
 			</v-row>
 		</v-container>
@@ -15,8 +15,9 @@
 
 <script lang="ts">
 import BloodFilling from "@/components/bloodFilling.vue";
+import TimeLine from "@/components/TimeLine.vue";
 
 export default {
-	components: {BloodFilling}
+	components: {TimeLine, BloodFilling}
 }
 </script>
