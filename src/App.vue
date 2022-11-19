@@ -8,20 +8,25 @@
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
+	<footer>
+		Contact: <a href="mailto:imdev7@protonmail.com">Say Hi!</a>
+	</footer>
 </template>
 
 <script setup lang="ts">
 	import {onMounted} from "vue";
 	import {parseCSV} from "@/utils/csv";
 	import {Person} from "@/type";
+	import {useStore} from "vuex";
 	const getPeople = async () => {
 		const response = await fetch('/data/people.csv')
 		return await response.text()
 	}
 	onMounted(async() => {
+		const store = useStore()
 		let peopleData: string | string[] = await getPeople()
 		const people: Array<Person> = parseCSV<Person>(peopleData)
-		console.log(people)
+		store.commit('SET_PEOPLE', people)
 	})
 
 

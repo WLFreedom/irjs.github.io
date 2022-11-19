@@ -12,7 +12,7 @@
 						<v-icon>mdi-alert</v-icon>
 					</template>
 				</v-timeline-item>
-				<v-timeline-item v-for="(item, i) in items" small :key="i">
+				<v-timeline-item v-for="(item, i) in store.getters.people" small :key="i">
 					<div class="d-flex">
 						<strong class="mr-4" v-text="item.date" />
 						<div>
@@ -27,90 +27,16 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, reactive} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import {useStore} from "vuex";
 const store = useStore();
-const items = reactive([
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-	{
-		name: 'Mahsa Amini',
-		date: '2022-08-12',
-		state: '04'
-	},
-
-])
 
 onMounted(() => {
-	const $timeline = document.querySelector('.time-line')
+	const $timeline = document.querySelector('.time-line') as HTMLDivElement
 	if ($timeline) {
-		const height = $timeline.clientHeight
-		const t = 72
 		$timeline.addEventListener('scroll', () => {
-			const percent = Math.round(($timeline.scrollTop * 100) / (height + t))
+			const height = $timeline.scrollHeight - $timeline.clientHeight
+			const percent = Math.round(($timeline.scrollTop * 100) / (height))
 			store.commit('SET_SCROLL', percent)
 		})
 	}
