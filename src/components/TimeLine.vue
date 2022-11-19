@@ -27,8 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-import {reactive} from "vue";
-
+import {onMounted, reactive} from "vue";
+import {useStore} from "vuex";
+const store = useStore();
 const items = reactive([
 	{
 		name: 'Mahsa Amini',
@@ -102,6 +103,18 @@ const items = reactive([
 	},
 
 ])
+
+onMounted(() => {
+	const $timeline = document.querySelector('.time-line')
+	if ($timeline) {
+		const height = $timeline.clientHeight
+		const t = 72
+		$timeline.addEventListener('scroll', () => {
+			const percent = Math.round(($timeline.scrollTop * 100) / (height + t))
+			store.commit('SET_SCROLL', percent)
+		})
+	}
+})
 </script>
 
 <style scoped lang="scss">

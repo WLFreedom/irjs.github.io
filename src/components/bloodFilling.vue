@@ -1,5 +1,6 @@
 <template>
 	<div class="blood-map">
+
 		<IranMap />
 		<div class="wave-wrapper">
 			<ul class="waves" aria-hidden="true">
@@ -9,10 +10,33 @@
 				<li>wave 4</li>
 			</ul>
 		</div>
-		<div class="waves-support"></div>
+		<div class="wave-support-wrapper">
+			<div class="waves-support"></div>
+		</div>
 	</div>
-</template>
 
+</template>
+<script lang="ts" setup>
+import {useStore} from "vuex";
+import {onMounted, reactive, ref, watch} from "vue";
+const bloodHeight = 480
+const store = useStore();
+
+watch(() => store.getters.scroll, (p) => {
+	animate(p)
+})
+const animate = (percent: number) => {
+	const $waves = document.querySelector('.waves') as HTMLDivElement
+	const $waveSupport = document.querySelector('.waves-support') as HTMLDivElement
+
+	if ($waves && $waveSupport) {
+		const x = Math.round((percent * bloodHeight) / 100)
+		$waves.style.transform = `translateY(-${x}px)`
+		$waveSupport.style.height = `${x}px`
+	}
+}
+
+</script>
 <style>
 :root {
 	--svg-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 128'%3E%3Cpath d='M0 48c237-62 403-63 640 0 237 62 403 62 640 0v80H0V48z'/%3E%3C/svg%3E");
@@ -31,15 +55,17 @@
 	height: 593px;
 	position: relative;
 }
+.waves-support, .waves {
+	transition: all cubic-bezier(0.73, 0.2, 0.51, 1.69) 2s;
+}
 .waves {
 	position: absolute;
 	bottom: 0;
 	width: 654px;
-	animation: moveTop ease-in-out 5s;
+	/*animation: moveTop ease-in-out 5s;*/
 	-webkit-animation-fill-mode: forwards;
 }
-.wave-wrapper, .waves-support {
-	border: 1px solid blue;
+.wave-wrapper, .wave-support-wrapper {
 	background: transparent;
 	height: 593px;
 	position: absolute;
@@ -50,7 +76,7 @@
 .wave-wrapper {
 	background: #111;
 }
-.waves-support:after {
+.waves-support {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -59,7 +85,7 @@
 	height: 0;
 	bottom: 0;
 	z-index: 1;
-	animation: increaseHeight ease-in-out 5s;
+	/*animation: increaseHeight ease-in-out 5s;*/
 	-webkit-animation-fill-mode: forwards;
 
 }
@@ -126,8 +152,8 @@
 	}
 }
 </style>
-<script>
-import IranMap from "@/components/iranMap";
+<script lang="ts">
+import IranMap from "@/components/iranMap.vue";
 export default {
 	components: {IranMap}
 }

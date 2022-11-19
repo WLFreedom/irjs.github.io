@@ -10,6 +10,23 @@
   <router-view/>
 </template>
 
+<script setup lang="ts">
+	import {onMounted} from "vue";
+	import {parseCSV} from "@/utils/csv";
+	import {Person} from "@/type";
+	const getPeople = async () => {
+		const response = await fetch('/data/people.csv')
+		return await response.text()
+	}
+	onMounted(async() => {
+		let peopleData: string | string[] = await getPeople()
+		const people: Array<Person> = parseCSV<Person>(peopleData)
+		console.log(people)
+	})
+
+
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
