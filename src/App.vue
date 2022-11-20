@@ -32,6 +32,7 @@ onMounted(async () => {
 
 	getPeople()
 		.then((peopleData) => {
+			console.log(peopleData)
 			const people = parseCSV<Person>(peopleData)
 			store.commit('SET_PEOPLE', people)
 			console.log(people)
@@ -40,6 +41,7 @@ onMounted(async () => {
 
 	getStates()
 		.then((stateData) => {
+			console.log(stateData)
 			const states = parseCSV<State>(stateData)
 			store.commit('SET_STATES', states)
 			console.log(states)
