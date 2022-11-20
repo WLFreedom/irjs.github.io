@@ -1,8 +1,12 @@
 <template>
-	<v-app>
+	<v-app class="mt-4">
 		<div>
-			<h1>List people who has been killed in Iran</h1>
-			<h2 class="font-weight-light">Some data maybe missing, we still trying to add.</h2>
+			<h1 class="font-weight-regular">
+				<v-avatar size="x-large" color="yellow">
+					<v-icon size="36" color="yellow">mdi-alert</v-icon>
+				</v-avatar>
+				List data is inaccurate!
+			</h1>
 		</div>
 		<router-view class="mt-10"/>
 		<v-footer>
