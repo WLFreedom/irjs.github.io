@@ -1,12 +1,14 @@
 <template>
-	<div>
-		<h1>List people who has been killed in Iran</h1>
-		<h2 class="font-weight-light">Some data maybe missing, we still trying to add.</h2>
-	</div>
-	<router-view class="mt-10" />
-	<v-footer>
-		Contact: <a href="mailto:imdev7@protonmail.com">Say Hi!</a>
-	</v-footer>
+	<v-app>
+		<div>
+			<h1>List people who has been killed in Iran</h1>
+			<h2 class="font-weight-light">Some data maybe missing, we still trying to add.</h2>
+		</div>
+		<router-view class="mt-10" />
+		<v-footer>
+			Contact: <a href="mailto:imdev7@protonmail.com">Say Hi!</a>
+		</v-footer>
+	</v-app>
 </template>
 
 <script setup lang="ts">
