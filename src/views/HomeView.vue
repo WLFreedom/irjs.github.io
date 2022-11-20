@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+	<div class="home">
+		<v-container>
+			<v-row>
+				<v-col lg="6" md="12" cols="12">
+					<BloodFilling/>
+				</v-col>
+				<v-col lg="6" md="12" cols="12">
+					<TimeLine />
+				</v-col>
+			</v-row>
+		</v-container>
+	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import BloodFilling from "@/components/bloodFilling.vue";
+import TimeLine from "@/components/TimeLine.vue";
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
-});
+export default {
+	components: {TimeLine, BloodFilling}
+}
 </script>
