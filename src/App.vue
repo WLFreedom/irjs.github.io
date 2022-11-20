@@ -3,7 +3,7 @@
 		<div>
 			<h1 class="font-weight-regular">
 				<v-avatar size="x-large" color="yellow">
-					<v-icon size="36" color="yellow">mdi-alert</v-icon>
+					<v-icon size="36">mdi-alert</v-icon>
 				</v-avatar>
 				List data is inaccurate!
 			</h1>
