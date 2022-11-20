@@ -4,26 +4,37 @@
 		<h2 class="font-weight-light">Some data maybe missing, we still trying to add.</h2>
 	</div>
 	<router-view class="mt-10" />
-	<footer>
+	<v-footer>
 		Contact: <a href="mailto:imdev7@protonmail.com">Say Hi!</a>
-	</footer>
+	</v-footer>
 </template>
 
 <script setup lang="ts">
 import {onMounted} from "vue";
 import {parseCSV} from "@/utils/csv";
-import {Person} from "@/type";
+import {Person, State} from "@/type";
 import {useStore} from "vuex";
 
 const getPeople = async () => {
 	const response = await fetch('/data/people.csv')
 	return await response.text()
 }
+
+const getStates = async () => {
+	const response = await fetch('/data/states.csv')
+	return await response.text()
+}
+
 onMounted(async () => {
 	const store = useStore()
-	let peopleData: string | string[] = await getPeople()
-	const people: Array<Person> = parseCSV<Person>(peopleData)
+
+	const peopleData: string = await getPeople()
+	const people = parseCSV<Person>(peopleData)
 	store.commit('SET_PEOPLE', people)
+
+	const stateData = await getStates()
+	const states = parseCSV<State>(stateData)
+	store.commit('SET_STATES', states)
 })
 
 

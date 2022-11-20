@@ -261,14 +261,20 @@
 </template>
 <script setup>
 
-import {onMounted} from "vue";
+import {computed, onMounted} from "vue";
+import {useStore} from "vuex";
+
+const store = useStore()
+const states = computed(() => store.getters.states)
 
 onMounted(() => {
 	const $paths = document.querySelectorAll('.cover-map g > path')
 	const $stateName = document.querySelector('.state-name')
 	$paths.forEach($path => {
 		$path.addEventListener('mousemove', (e) => {
-			$stateName.innerText = $path.getAttribute('title') ?? ''
+			const id = $path.getAttribute('id')
+			const deathCount = states.value.find(item => item.id === id).death_count
+			$stateName.innerHTML = `<h3 class="font-weight-regular">${$path.getAttribute('title')}</h3> Death Count: ${deathCount}` ?? ''
 			$stateName.style.left = e.clientX?.toString() + 'px'
 			$stateName.style.top = e.clientY?.toString() + 'px'
 		})

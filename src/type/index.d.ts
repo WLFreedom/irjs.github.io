@@ -4,3 +4,9 @@ export type Person = {
 	state: string
 	age: number
 }
+
+export type State = {
+	id: string;
+	name: string;
+	death_count: number
+}
