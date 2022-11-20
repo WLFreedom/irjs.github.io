@@ -302,10 +302,7 @@ onMounted(() => {
 		stroke: #000;
 		&:hover {
 			stroke: #222;
-			fill: #00000030;
-			&:after {
-				display: block;
-			}
+			fill: #00000010;
 		}
 	}
 }
