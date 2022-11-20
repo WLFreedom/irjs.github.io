@@ -25,7 +25,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ir.js.org
+      url: https://ir.js.org
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
