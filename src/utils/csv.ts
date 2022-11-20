@@ -1,5 +1,5 @@
 export const parseCSV = <T>(data: string) => {
-	const rows = data.split('\r\n')
+	const rows = data.split('\n')
 	const firstRow = rows[0].split(',')
 	console.log({firstRow})
 	rows.shift()
@@ -7,8 +7,7 @@ export const parseCSV = <T>(data: string) => {
 	for(const row of rows) {
 		const item: T = {} as T;
 		const parsedRow = row.split(',')
-		console.log(parsedRow)
-		// if (!parsedRow[0]) continue;
+		if (!parsedRow[0]) continue;
 		for (const index in firstRow) {
 			const key = firstRow[index]
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
