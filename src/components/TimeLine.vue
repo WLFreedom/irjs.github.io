@@ -13,12 +13,18 @@
 					</template>
 				</v-timeline-item>
 				<v-timeline-item v-for="(item, i) in store.getters.people" small :key="i">
-					<div class="d-flex">
-						<strong class="mr-4" v-text="item.date" />
-						<div>
-							<strong v-text="item.name" />
+					<v-card theme="dark" class="d-flex flex-column align-start pa-3 item">
+						<div class="d-inline-flex align-center">
+							<h3 class="font-weight-regular" v-text="item.name" />
+							<span>, Location: {{item.state}}</span>
 						</div>
-					</div>
+						<div class="mt-3 d-inline-flex align-center">
+							<v-icon>mdi-calendar-today</v-icon>
+							<span class="ml-1 mr-4" v-text="item.date" />
+							<v-icon>mdi-cake-variant</v-icon>
+							<span class="ml-1" v-text="`Age: ${item.age}`" />
+						</div>
+					</v-card>
 				</v-timeline-item>
 			</v-timeline>
 		</div>
@@ -27,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, reactive, ref} from "vue";
+import {onMounted} from "vue";
 import {useStore} from "vuex";
 const store = useStore();
 
@@ -44,12 +50,15 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+.v-card.item {
+	box-shadow: 0 3px 12px rgba(100, 100, 100, .2);
+}
 .time-line-wrapper {
 	position: relative;
 }
 .time-line {
 	scroll-behavior: smooth;
-	max-height: 50vh;
+	max-height: 75vh;
 	overflow: auto;
 	position: relative;
 	padding-bottom: 64px;

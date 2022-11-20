@@ -257,8 +257,28 @@
 				id="IR-18" />
 		</g>
 	</svg>
+	<div class="state-name"></div>
 </template>
+<script setup>
 
+import {onMounted} from "vue";
+
+onMounted(() => {
+	const $paths = document.querySelectorAll('.cover-map g > path')
+	const $stateName = document.querySelector('.state-name')
+	$paths.forEach($path => {
+		$path.addEventListener('mousemove', (e) => {
+			$stateName.innerText = $path.getAttribute('title') ?? ''
+			$stateName.style.left = e.clientX?.toString() + 'px'
+			$stateName.style.top = e.clientY?.toString() + 'px'
+		})
+		$path.addEventListener('mouseleave', () => {
+			// $stateName.style.display = 'none'
+		})
+	})
+})
+
+</script>
 <style lang="scss">
 .clip-map, .cover-map {
 	height: 593px;
@@ -277,7 +297,21 @@
 		&:hover {
 			stroke: #222;
 			fill: #00000030;
+			&:after {
+				display: block;
+			}
 		}
 	}
+}
+.state-name {
+	position: fixed;
+	background: rgb(255, 255, 255);
+	z-index: 3;
+	color: red;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-weight: 700;
+	box-shadow: 0 5px 9px rgb(0, 0, 0, 0.25);
+	transition: all 1200ms ease-in-out;
 }
 </style>
