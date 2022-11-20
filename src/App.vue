@@ -4,7 +4,7 @@
 			<h1>List people who has been killed in Iran</h1>
 			<h2 class="font-weight-light">Some data maybe missing, we still trying to add.</h2>
 		</div>
-		<router-view class="mt-10" />
+		<router-view class="mt-10"/>
 		<v-footer>
 			Contact: <a href="mailto:imdev7@protonmail.com">Say Hi!</a>
 		</v-footer>
@@ -30,13 +30,20 @@ const getStates = async () => {
 onMounted(async () => {
 	const store = useStore()
 
-	const peopleData: string = await getPeople()
-	const people = parseCSV<Person>(peopleData)
-	store.commit('SET_PEOPLE', people)
+	getPeople()
+		.then((peopleData) => {
+			const people = parseCSV<Person>(peopleData)
+			store.commit('SET_PEOPLE', people)
+			console.log(people)
+		})
 
-	const stateData = await getStates()
-	const states = parseCSV<State>(stateData)
-	store.commit('SET_STATES', states)
+
+	getStates()
+		.then((stateData) => {
+			const states = parseCSV<State>(stateData)
+			store.commit('SET_STATES', states)
+			console.log(states)
+		})
 })
 
 
