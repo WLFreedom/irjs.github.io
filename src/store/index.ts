@@ -4,12 +4,20 @@ export default createStore({
 	state: {
 		scroll: 0,
 		people: [],
-		states: []
+		states: [],
+		languages: [
+			{name: 'English', code: 'en'},
+			{name: 'Persian', code: 'fa'},
+			{name: 'Sweden', code: 'se'},
+			{name: 'Germany', code: 'de'},
+			{name: 'Dutch', code: 'nl'},
+		]
 	},
 	getters: {
 		scroll: state => state.scroll,
 		people: state => state.people,
 		states: state => state.states,
+		languages: state => state.languages
 	},
 	mutations: {
 		SET_SCROLL(state, payload) {
