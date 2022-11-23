@@ -20,8 +20,14 @@ import {useStore} from "vuex";
 import {onMounted, reactive, ref, watch} from "vue";
 let bloodHeight = 480
 const store = useStore();
-
+let isAnimating = false
 watch(() => store.getters.scroll, (p) => {
+	if (isAnimating) return
+	isAnimating = true
+	setTimeout(() => {
+		isAnimating = false
+	}, 100)
+	console.log('scroll')
 	animate(p)
 })
 const animate = (percent: number) => {
