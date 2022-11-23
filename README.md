@@ -1,4 +1,4 @@
-## The data is collected by everyone so there could be miinformation so please contribute and help to have a accurate data.
+## The data is collected by everyone so there could be misinformation so please contribute and help to have a accurate data.
 
 ### How to contribute?
 
