@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<v-container>
+		<v-container class="pa-0 pa-md-4">
 			<v-row>
 				<v-col class="pt-0" lg="6" md="12" cols="12">
 					<BloodFilling/>
