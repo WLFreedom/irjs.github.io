@@ -88,4 +88,15 @@ onMounted(() => {
 		display: none;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.time-line {
+		h3 {
+			font-size: 14px;
+		}
+		span {
+			font-size: 12px;
+		}
+	}
+}
 </style>
