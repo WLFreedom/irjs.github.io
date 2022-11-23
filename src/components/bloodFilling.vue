@@ -30,7 +30,7 @@ const animate = (percent: number) => {
 
 	if ($waves && $waveSupport) {
 		if (window.innerWidth < 960) {
-			bloodHeight = window.innerHeight * 0.9
+			bloodHeight = window.innerHeight * 0.95
 		}
 		const x = Math.round((percent * bloodHeight) / 100)
 		$waves.style.transform = `translateY(-${x}px)`

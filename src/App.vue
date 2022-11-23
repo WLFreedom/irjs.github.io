@@ -9,7 +9,7 @@
 			<router-view/>
 			<v-footer class="position-fixed d-flex justify-space-between">
 				<div>
-					{{ $t('contact') }}:
+					<span class="hidden-xs">{{ $t('contact') }}:</span>
 					<a class="ml-1 text-decoration-none" href="mailto:imdev7@protonmail.com">
 						<v-icon color="primary">mdi-email</v-icon>
 					</a>
@@ -18,7 +18,10 @@
 					<v-select @update:modelValue="languageChanged" menu-icon="mdi-chevron-down"
 								prepend-inner-icon="mdi-translate-variant" color="primary" single-line density="compact"
                               v-model="language" :items="store.getters.languages" item-title="name"
-                              item-value="code"></v-select>
+                              item-value="code">
+						<template #selection="{item}">{{item.value}}
+						</template>
+					</v-select>
 				</div>
 				<div class="ml-4">
 					<v-btn href="https://github.com/irjs/irjs.github.io/blob/master/README.md" size="small"
