@@ -15,14 +15,19 @@
 				<v-timeline-item v-for="(item, i) in store.getters.people" small :key="i">
 					<v-card theme="dark" class="d-flex flex-column align-start pa-3 item">
 						<div class="d-inline-flex align-center">
-							<h3 class="font-weight-regular" v-text="item.name" />
-							<span>, Location: {{item.state}}</span>
+							<h3 class="font-weight-regular" v-text="item.name"/>
+							<span class="d-inline-flex align-center">
+								<span class="hidden-xs">, Location</span>
+								<v-icon class="hidden-sm-and-up ml-2">mdi-map-marker</v-icon>
+								: {{ item.state }}
+							</span>
 						</div>
 						<div class="mt-3 d-inline-flex align-center">
 							<v-icon>mdi-calendar-today</v-icon>
-							<span class="ml-1 mr-4" v-text="item.date" />
+							<span class="ml-1 mr-4" v-text="item.date"/>
 							<v-icon>mdi-cake-variant</v-icon>
-							<span class="ml-1" v-text="`Age: ${item.age}`" />
+							<span class="hidden-xs ml-1">Age: </span>
+							<span class="ml-1" v-text="`${item.age}`"/>
 						</div>
 					</v-card>
 				</v-timeline-item>
@@ -35,6 +40,7 @@
 <script lang="ts" setup>
 import {onMounted} from "vue";
 import {useStore} from "vuex";
+
 const store = useStore();
 
 onMounted(() => {
@@ -53,9 +59,11 @@ onMounted(() => {
 .v-card.item {
 	box-shadow: 0 3px 12px rgba(100, 100, 100, .2);
 }
+
 .time-line-wrapper {
 	position: relative;
 }
+
 .time-line {
 	scroll-behavior: smooth;
 	max-height: 75vh;
@@ -63,6 +71,7 @@ onMounted(() => {
 	position: relative;
 	padding-bottom: 64px;
 }
+
 .gradient {
 	content: "";
 	height: 64px;
@@ -73,6 +82,7 @@ onMounted(() => {
 	background: linear-gradient(0deg, #ffffff 15%, #ffffff90 80%, #FFFFFF00 100%);
 	z-index: 10;
 }
+
 @media screen and (max-width: 959px) {
 	.gradient {
 		display: none;

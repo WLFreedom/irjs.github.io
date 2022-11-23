@@ -2,10 +2,10 @@
 	<div class="home">
 		<v-container>
 			<v-row>
-				<v-col lg="6" md="12" cols="12">
+				<v-col class="pt-0" lg="6" md="12" cols="12">
 					<BloodFilling/>
 				</v-col>
-				<v-col lg="6" md="12" cols="12">
+				<v-col class="pt-0" lg="6" md="12" cols="12">
 					<TimeLine />
 				</v-col>
 			</v-row>
