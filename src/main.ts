@@ -9,6 +9,8 @@ import {createVuetify} from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { fa, de, en, sk } from 'vuetify/locale'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import {createI18n} from "vue-i18n";
 import {en as ien} from "@/lang/en";
 import {fa as ifa} from "@/lang/fa";

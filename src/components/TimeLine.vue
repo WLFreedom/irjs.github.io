@@ -73,4 +73,9 @@ onMounted(() => {
 	background: linear-gradient(0deg, #ffffff 15%, #ffffff90 80%, #FFFFFF00 100%);
 	z-index: 10;
 }
+@media screen and (max-width: 959px) {
+	.gradient {
+		display: none;
+	}
+}
 </style>

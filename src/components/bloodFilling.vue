@@ -1,6 +1,5 @@
 <template>
 	<div class="blood-map">
-
 		<IranMap />
 		<div class="wave-wrapper">
 			<ul class="waves" aria-hidden="true">
@@ -19,7 +18,7 @@
 <script lang="ts" setup>
 import {useStore} from "vuex";
 import {onMounted, reactive, ref, watch} from "vue";
-const bloodHeight = 480
+let bloodHeight = 480
 const store = useStore();
 
 watch(() => store.getters.scroll, (p) => {
@@ -30,6 +29,9 @@ const animate = (percent: number) => {
 	const $waveSupport = document.querySelector('.waves-support') as HTMLDivElement
 
 	if ($waves && $waveSupport) {
+		if (window.innerWidth < 960) {
+			bloodHeight = window.innerHeight * 0.9
+		}
 		const x = Math.round((percent * bloodHeight) / 100)
 		$waves.style.transform = `translateY(-${x}px)`
 		$waveSupport.style.height = `${x}px`
@@ -106,6 +108,25 @@ const animate = (percent: number) => {
 	animation: animateWave var(--anim-duration) linear infinite;
 	filter: var(--filter-black-to-blue-siw);
 }
+
+@media screen and (max-width: 959px) {
+	.blood-map {
+		height: unset;
+	}
+	.wave-wrapper, .wave-support-wrapper {
+		clip-path: none;
+		height: 100vh;
+		position: fixed;
+		width: 100%;
+	}
+	.wave-wrapper {
+		background: transparent;
+	}
+	.waves {
+		width: 100%;
+	}
+}
+
 @keyframes animateWave {
 	0% {
 		background-position-x: 0;
